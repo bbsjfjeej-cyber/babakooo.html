@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>👑🍓 شاه توت | SHAHTOOT</title>
+
+  <meta name="description" content="👑🍓 شاه توت - جایی برای آدمای خاص، جایی که رفاقت از همه چی مهم‌تره ❤️">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 40, 140, .15), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(130, 40, 255, .12), transparent 30%),
+        #08060b;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1000;
+
+      padding: 15px 6%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(8, 6, 11, .72);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: .3s;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      color: #ff5cab;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 100vh;
+      padding: 140px 20px 80px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero-icon {
+      font-size: 70px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 9vw, 85px);
+      margin: 20px 0;
+
+      background: linear-gradient(
+        90deg,
+        #ff4fa3,
+        #fff,
+        #b66cff,
+        #ff4fa3
+      );
+
+      background-size: 300%;
+      -webkit-background-clip: text;
+      color: transparent;
+
+      animation: gradient 5s linear infinite;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0%;
+      }
+
+      100% {
+        background-position: 300%;
+      }
+    }
+
+    .hero p {
+      font-size: 20px;
+      line-height: 2;
+      color: #ddd;
+    }
+
+    .hero-buttons {
+      margin-top: 30px;
+
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 28px;
+      border-radius: 50px;
+
+      color: white;
+      text-decoration: none;
+
+      font-weight: bold;
+
+      transition: .3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg,#ff3d9a,#8d43ff);
+      box-shadow: 0 10px 30px rgba(255,60,160,.25);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.05);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    /* ================= GENERAL ================= */
+
+    section {
+      padding: 90px 6%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #aaa;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about-card {
+      max-width: 900px;
+      margin: auto;
+
+      padding: 35px;
+
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+
+      backdrop-filter: blur(15px);
+
+      line-height: 2.3;
+      text-align: center;
+    }
+
+    /* ================= STATS ================= */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+
+      max-width: 1000px;
+      margin: 50px auto 0;
+    }
+
+    .stat {
+      padding: 30px;
+      text-align: center;
+
+      border-radius: 25px;
+
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stat .number {
+      font-size: 36px;
+      font-weight: bold;
+      color: #ff5cac;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: #bbb;
+    }
+
+    /* ================= GALLERY ================= */
+
+    .gallery {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+      gap: 20px;
+    }
+
+    .gallery-item {
+      height: 250px;
+
+      border-radius: 25px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,70,160,.15),
+          rgba(120,50,255,.15)
+        );
+
+      border: 1px solid rgba(255,255,255,.08);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .placeholder {
+      color: #999;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ================= VIDEOS ================= */
+
+    .videos {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+
+      gap: 25px;
+    }
+
+    .video-card {
+      background: rgba(255,255,255,.05);
+
+      border-radius: 25px;
+      overflow: hidden;
+
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .video-card video {
+      width: 100%;
+      display: block;
+      max-height: 400px;
+      background: #000;
+    }
+
+    .video-info {
+      padding: 18px;
+    }
+
+    .video-info h3 {
+      margin-bottom: 8px;
+    }
+
+    .video-info p {
+      color: #aaa;
+    }
+
+    /* ================= TELEGRAM ================= */
+
+    .telegram-section {
+      display: flex;
+      justify-content: center;
+    }
+
+    .telegram-card {
+      width: min(750px,100%);
+
+      padding: 45px 25px;
+
+      text-align: center;
+
+      border-radius: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,60,160,.10),
+          rgba(120,50,255,.10)
+        );
+
+      border: 1px solid rgba(255,100,190,.25);
+
+      box-shadow:
+        0 25px 80px rgba(0,0,0,.35);
+
+      backdrop-filter: blur(18px);
+    }
+
+    .telegram-icon {
+      font-size: 65px;
+      margin-bottom: 20px;
+    }
+
+    .telegram-card h2 {
+      font-size: clamp(20px,5vw,34px);
+      margin-bottom: 20px;
+    }
+
+    .members {
+      display: inline-block;
+
+      padding: 10px 22px;
+
+      border-radius: 50px;
+
+      background: rgba(255,80,170,.12);
+
+      color: #eee;
+
+      margin-bottom: 30px;
+    }
+
+    .members strong {
+      font-size: 25px;
+      color: #ff6bb7;
+    }
+
+    .group-description {
+      line-height: 2.4;
+      margin-bottom: 30px;
+    }
+
+    .group-description h3 {
+      font-size: 28px;
+      margin: 10px 0 0;
+    }
+
+    .group-description h4 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .decor {
+      color: #ff72bd;
+      font-size: 14px;
+    }
+
+    .telegram-btn {
+      display: inline-block;
+
+      padding: 16px 32px;
+
+      border-radius: 50px;
+
+      color: #fff;
+      text-decoration: none;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff3d9a,
+          #8744ff
+        );
+
+      box-shadow:
+        0 12px 35px rgba(255,60,160,.3);
+
+      transition: .3s;
+    }
+
+    .telegram-btn:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    /* ================= UPLOAD ================= */
+
+    .upload-box {
+      max-width: 850px;
+      margin: auto;
+
+      padding: 40px;
+
+      border-radius: 30px;
+
+      border: 2px dashed rgba(255,100,190,.35);
+
+      background: rgba(255,255,255,.04);
+
+      text-align: center;
+    }
+
+    .upload-box h3 {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .upload-box p {
+      color: #aaa;
+      line-height: 2;
+      margin-bottom: 25px;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-button {
+      display: inline-block;
+
+      padding: 14px 28px;
+
+      border-radius: 50px;
+
+      background: linear-gradient(135deg,#ff4da6,#8845ff);
+
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #preview {
+      margin-top: 30px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+
+      gap: 15px;
+    }
+
+    #preview img,
+    #preview video {
+      width: 100%;
+      max-height: 250px;
+
+      object-fit: cover;
+
+      border-radius: 18px;
+
+      background: #000;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      padding: 35px 20px;
+
+      text-align: center;
+
+      color: #888;
+
+      border-top:
+        1px solid rgba(255,255,255,.07);
+    }
+
+    footer strong {
+      color: #ff63b2;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width:768px) {
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+
+        top: 70px;
+        right: 5%;
+        left: 5%;
+
+        display: none;
+        flex-direction: column;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        background: rgba(15,10,20,.95);
+
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 70px 5%;
+      }
+
+      .hero {
+        padding-top: 130px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .about-card {
+        padding: 25px 18px;
+      }
+
+      .telegram-card {
+        padding: 35px 18px;
+      }
+
+      .upload-box {
+        padding: 30px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav>
+
+    <a href="#home" class="logo">
+      👑🍓 SHAHTOOT
+    </a>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+      ☰
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+      <li>
+        <a href="#home">خانه</a>
+      </li>
+
+      <li>
+        <a href="#about">درباره</a>
+      </li>
+
+      <li>
+        <a href="#gallery">گالری</a>
+      </li>
+
+      <li>
+        <a href="#videos">ویدیوها</a>
+      </li>
+
+      <li>
+        <a href="#telegram">گروه</a>
+      </li>
+
+      <li>
+        <a href="#upload">آپلود</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="hero-icon">
+        👑🍓
+      </div>
+
+      <h1>
+        𝑺𝒉𝒂𝒉‌𝑻𝒐𝒐𝒕
+      </h1>
+
+      <p>
+        شــاه تــوت
+        <br>
+        جایی برای آدمای خاص ❤️
+        <br>
+        جایی که رفاقت از همه چی مهم‌تره
+      </p>
+
+      <div class="hero-buttons">
+
+        <a
+          class="btn btn-primary"
+          href="https://t.me/+rRjGdOvcWGZmNjU0"
+          target="_blank"
+        >
+          🚀 ورود به گروه
+        </a>
+
+        <a
+          class="btn btn-secondary"
+          href="#gallery"
+        >
+          🍓 مشاهده گالری
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ABOUT ================= -->
+
+  <section id="about">
+
+    <div class="section-title">
+
+      <h2>👑 درباره شاه توت</h2>
+
+      <p>
+        یک جمع متفاوت برای آدم‌های خاص
+      </p>
+
+    </div>
+
+    <div class="about-card">
+
+      <div class="decor">
+        ╔═══ 🍇 𓆩👑𓆪 🍇 ═══╗
+      </div>
+
+      <h2>
+        𝑺𝑯𝑨𝑯 𝑻𝑶𝑶𝑻
+      </h2>
+
+      <h3>
+        شــاه تــوت
+      </h3>
+
+      <div class="decor">
+        ╚═══ 🍇 𓆩👑𓆪 🍇 ═══╝
+      </div>
+
+      <br>
+
+      <p>
+        🌊✨ جـــایـــی بـــرای آدمـــای خـــاص
+      </p>
+
+      <p>
+        🫂 جـــایـــی کـــه رَفـــاقـــت از هـــمـــه چـــی مـــهـــمـــتـــره ❤️
+      </p>
+
+      <p>
+        💫 نـــبـــاشـــی، جـــمـــعـــمـــون یـــه چـــی
+      </p>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+      <div class="stat">
+
+        <div class="number">
+          ۵٬۰۹۷
+        </div>
+
+        <span>
+          👥 عضو
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="number">
+          👑
+        </div>
+
+        <span>
+          شاه توت
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="number">
+          ❤️
+        </div>
+
+        <span>
+          رفاقت
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= GALLERY ================= -->
+
+  <section id="gallery">
+
+    <div class="section-title">
+
+      <h2>🍓 گالری شاه توت</h2>
+
+      <p>
+        عکس‌های جمع خودمون رو اینجا قرار بده
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+      <div class="gallery-item">
+
+        <div class="placeholder">
+          📸
+          <br>
+          عکس شماره ۱
+        </div>
+
+      </div>
+
+
+      <div class="gallery-item">
+
+        <div class="placeholder">
+          📸
+          <br>
+          عکس شماره ۲
+        </div>
+
+      </div>
+
+
+      <div class="gallery-item">
+
+        <div class="placeholder">
+          📸
+          <br>
+          عکس شماره ۳
+        </div>
+
+      </div>
+
+
+      <div class="gallery-item">
+
+        <div class="placeholder">
+          📸
+          <br>
+          عکس شماره ۴
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= VIDEOS ================= -->
+
+  <section id="videos">
+
+    <div class="section-title">
+
+      <h2>🎬 ویدیوهای شاه توت</h2>
+
+      <p>
+        لحظه‌های قشنگ جمعمون
+      </p>
+
+    </div>
+
+
+    <div class="videos">
+
+      <div class="video-card">
+
+        <video controls>
+          <source src="" type="video/mp4">
+          مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+        </video>
+
+        <div class="video-info">
+
+          <h3>
+            🎬 ویدیوی اول
+          </h3>
+
+          <p>
+            ویدیوی خودت رو اینجا قرار بده.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="video-card">
+
+        <video controls>
+          <source src="" type="video/mp4">
+        </video>
+
+        <div class="video-info">
+
+          <h3>
+            🍓 ویدیوی دوم
+          </h3>
+
+          <p>
+            لحظات شاه توت
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= TELEGRAM ================= -->
+
+  <section class="telegram-section" id="telegram">
+
+    <div class="telegram-card">
+
+      <div class="telegram-icon">
+        👑🍓
+      </div>
+
+      <h2>
+        👑🍓 ꧁༺ 𝑺𝒉𝒂𝒉‌𝑻𝒐𝒐𝒕 ༻꧂ 🍓👑
+      </h2>
+
+      <div class="members">
+
+        👥
+
+        <strong>
+          ۵٬۰۹۷
+        </strong>
+
+        عضو
+
+      </div>
+
+
+      <div class="group-description">
+
+        <div class="decor">
+          ╔═══ 🍇 𓆩👑𓆪 🍇 ═══╗
+        </div>
+
+        <h3>
+          𝑺𝑯𝑨𝑯 𝑻𝑶𝑶𝑻
+        </h3>
+
+        <h4>
+          شــاه تــوت
+        </h4>
+
+        <div class="decor">
+          ╚═══ 🍇 𓆩👑𓆪 🍇 ═══╝
+        </div>
+
+        <br>
+
+        <p>
+          🌊✨ جـــایـــی بـــرای آدمـــای خـــاص
+        </p>
+
+        <p>
+          🫂 جـــایـــی کـــه رَفـــاقـــت از هـــمـــه چـــی مـــهـــمـــتـــره ❤️
+        </p>
+
+        <p>
+          💫 نـــبـــاشـــی، جـــمـــعـــمـــون یـــه چـــی
+        </p>
+
+      </div>
+
+
+      <a
+        class="telegram-btn"
+        href="https://t.me/+rRjGdOvcWGZmNjU0"
+        target="_blank"
+        rel="noopener"
+      >
+        🚀 ورود به گروه شاه‌توت
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= UPLOAD ================= -->
+
+  <section id="upload">
+
+    <div class="section-title">
+
+      <h2>📤 آپلود عکس و ویدیو</h2>
+
+      <p>
+        فایل‌های خودت رو انتخاب کن تا پیش‌نمایش داده بشن
+      </p>
+
+    </div>
+
+
+    <div class="upload-box">
+
+      <h3>
+        🍓 گالری خودت رو بساز
+      </h3>
+
+      <p>
+        عکس یا ویدیو انتخاب کن.
+        <br>
+        فایل انتخاب‌شده در همین صفحه نمایش داده می‌شود.
+      </p>
+
+
+      <label
+        for="fileInput"
+        class="upload-button"
+      >
+        📁 انتخاب عکس / ویدیو
+      </label>
+
+      <input
+        id="fileInput"
+        class="file-input"
+        type="file"
+        accept="image/*,video/*"
+        multiple
+      >
+
+
+      <div id="preview"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <p>
+      ساخته شده با ❤️ برای
+      <strong>
+        👑🍓 SHAHTOOT
+      </strong>
+    </p>
+
+    <p>
+      © 2026 تمام حقوق محفوظ است
+    </p>
+
+  </footer>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    /* MOBILE MENU */
+
+    function toggleMenu() {
+
+      const menu =
+        document.getElementById("navLinks");
+
+      menu.classList.toggle("active");
+
+    }
+
+
+    /* CLOSE MENU AFTER CLICK */
+
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          document
+            .getElementById("navLinks")
+            .classList.remove("active");
+
+        });
+
+      });
+
+
+    /* FILE PREVIEW */
+
+    const fileInput =
+      document.getElementById("fileInput");
+
+    const preview =
+      document.getElementById("preview");
+
+
+    fileInput.addEventListener(
+      "change",
+      function () {
+
+        preview.innerHTML = "";
+
+        const files = this.files;
+
+
+        Array.from(files).forEach(file => {
+
+          const url =
+            URL.createObjectURL(file);
+
+
+          if (
+            file.type.startsWith("image/")
+          ) {
+
+            const img =
+              document.createElement("img");
+
+            img.src = url;
+
+            img.alt = file.name;
+
+            preview.appendChild(img);
+
+          }
+
+
+          else if (
+            file.type.startsWith("video/")
+          ) {
+
+            const video =
+              document.createElement("video");
+
+            video.src = url;
+
+            video.controls = true;
+
+            video.preload = "metadata";
+
+            preview.appendChild(video);
+
+          }
+
+        });
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
