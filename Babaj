@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ دنیای شگفت‌انگیز ✨</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    background: #0a0a0a;
+    color: #fff;
+    cursor: none;
+  }
+
+  /* کرسر سفارشی */
+  .cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, #ff00ff);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s;
+  }
+
+  .cursor-outline {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #00ffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.3s ease-out;
+    mix-blend-mode: difference;
+  }
+
+  /* پس‌زمینه ذرات */
+  canvas#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  /* هدر */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+    font-size: 1rem;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    transition: width 0.3s;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  nav a:hover {
+    color: #00ffff;
+  }
+
+  /* بخش قهرمان */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff00ff, #00ffff, #ffff00);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease infinite;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin-bottom: 40px;
+    animation: fadeInUp 1.5s ease;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cta-button {
+    padding: 18px 50px;
+    font-size: 1.1rem;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #00ffff;
+    border-radius: 50px;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    transition: left 0.4s;
+    z-index: -1;
+  }
+
+  .cta-button:hover::before {
+    left: 0;
+  }
+
+  .cta-button:hover {
+    border-color: transparent;
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+  }
+
+  /* بخش ویژگی‌ها */
+  .features {
+    padding: 120px 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    backdrop-filter: blur(10px);
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, #ff00ff, transparent 30%);
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #0a0a0a;
+    border-radius: 18px;
+    z-index: 1;
+  }
+
+  .feature-card:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(255, 0, 255, 0.3);
+  }
+
+  .feature-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .feature-card p {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+  }
+
+  /* بخش موج */
+  .wave-section {
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .wave-section h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 60px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+  }
+
+  .stat-label {
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+
+  /* فوتر */
+  footer {
+    padding: 50px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  footer .heart {
+    color: #ff00ff;
+    animation: pulse 1s infinite;
+    display: inline-block;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  /* اسکرول بار */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff00ff, #00ffff);
+    border-radius: 10px;
+  }
+
+  /* ریسپانسیو */
+  @media (max-width: 768px) {
+    header { padding: 15px 20px; }
+    nav ul { gap: 15px; }
+    nav a { font-size: 0.9rem; }
+    .logo { font-size: 1.3rem; }
+    .stats { gap: 40px; }
+    .stat-number { font-size: 2.5rem; }
+    .features { padding: 80px 20px; }
+    body { cursor: auto; }
+    .cursor, .cursor-outline { display: none; }
+    .cta-button { cursor: pointer; }
+  }
+
+  /* انیمیشن ورود */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- کرسر سفارشی -->
+<div class="cursor"></div>
+<div class="cursor-outline"></div>
+
+<!-- پس‌زمینه ذرات -->
+<canvas id="particles"></canvas>
+
+<!-- هدر -->
+<header>
+  <div class="logo">✨ شگفت‌انگیز</div>
+  <nav>
+    <ul>
+      <li><a href="#home">خانه</a></li>
+      <li><a href="#features">ویژگی‌ها</a></li>
+      <li><a href="#stats">آمار</a></li>
+      <li><a href="#contact">تماس</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- بخش قهرمان -->
+<section class="hero" id="home">
+  <h1>دنیای<br>شگفت‌انگیز</h1>
+  <p>جایی که خلاقیت با تکنولوژی ملاقات می‌کند و هر لحظه یک ماجراجویی جدید است</p>
+  <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+    شروع کن 🚀
+  </button>
+</section>
+
+<!-- ویژگی‌ها -->
+<section class="features" id="features">
+  <div class="feature-card reveal">
+    <div class="feature-content">
+      <span class="feature-icon">🎨</span>
+      <h3>طراحی زیبا</h3>
+      <p>طراحی‌های مدرن و چشم‌نواز که تجربه‌ای بی‌نظیر خلق می‌کنند</p>
+    </div>
+  </div>
+  <div class="feature-card reveal">
+    <div class="feature-content">
+      <span class="feature-icon">⚡</span>
+      <h3>سرعت بالا</h3>
+      <p>عملکرد سریع و روان برای تجربه‌ای بی‌وقفه و لذت‌بخش</p>
+    </div>
+  </div>
+  <div class="feature-card reveal">
+    <div class="feature-content">
+      <span class="feature-icon">🌟</span>
+      <h3>خلاقیت بی‌پایان</h3>
+      <p>ایده‌های نوآورانه که مرزهای ممکن را جابجا می‌کنند</p>
+    </div>
+  </div>
+  <div class="feature-card reveal">
+    <div class="feature-content">
+      <span class="feature-icon">🚀</span>
+      <h3>آینده‌نگر</h3>
+      <p>همیشه یک قدم جلوتر از زمان با جدیدترین تکنولوژی‌ها</p>
+    </div>
+  </div>
+  <div class="feature-card reveal">
+    <div class="feature-content">
+      <span class="feature-icon">💎</span>
+      <h3>کیفیت برتر</h3>
+      <p>بهترین کیفیت در هر جزئیات، بدون هیچ‌گونه سازش</p>
+    </div>
+  </div>
+  <div class="feature-card reveal">
+    <div class="feature-content">
+      <span class="feature-icon">🔥</span>
+      <h3>پر از انرژی</h3>
+      <p>انرژی مثبت و الهام‌بخش در هر گوشه از تجربه شما</p>
+    </div>
+  </div>
+</section>
+
+<!-- آمار -->
+<section class="wave-section" id="stats">
+  <h2>اعداد شگفت‌انگیز</h2>
+  <div class="stats">
+    <div class="stat reveal">
+      <span class="stat-number" data-target="999">0</span>
+      <span class="stat-label">پروژه موفق</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-number" data-target="150">0</span>
+      <span class="stat-label">کشور</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-number" data-target="50">0</span>
+      <span class="stat-label">جایزه بین‌المللی</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-number" data-target="100">0</span>
+      <span class="stat-label">درصد رضایت</span>
+    </div>
+  </div>
+</section>
+
+<!-- فوتر -->
+<footer id="contact">
+  <p>ساخته شده با <span class="heart">❤</span> برای شما</p>
+  <p style="margin-top: 15px; font-size: 0.9rem;">© 2025 تمامی حقوق محفوظ است</p>
+</footer>
+
+<script>
+// ===== کرسر سفارشی =====
+const cursor = document.querySelector('.cursor');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  
+  setTimeout(() => {
+    cursorOutline.style.left = e.clientX - 15 + 'px';
+    cursorOutline.style.top = e.clientY - 15 + 'px';
+  }, 80);
+});
+
+// بزرگ شدن کرسر روی لینک‌ها
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2)';
+    cursorOutline.style.transform = 'scale(1.5)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    cursorOutline.style.transform = 'scale(1)';
+  });
+});
+
+// ===== ذرات پس‌زمینه =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+const particles = [];
+const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0066'];
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.opacity = Math.random() * 0.5 + 0.2;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.opacity;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+// ایجاد ذرات
+for (let i = 0; i < 100; i++) {
+  particles.push(new Particle());
+}
+
+// اتصال ذرات نزدیک
+function connectParticles() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 120) {
+        ctx.strokeStyle = `rgba(255, 0, 255, ${0.15 - distance / 800})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  connectParticles();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// ===== افکت اسکرول =====
+const reveals = document.querySelectorAll('.reveal');
+
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    const revealPoint = 100;
+
+    if (elementTop < windowHeight - revealPoint) {
+      el.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
+
+// ===== شمارنده اعداد =====
+const statNumbers = document.querySelectorAll('.stat-number');
+let counted = false;
+
+function countUp() {
+  statNumbers.forEach(stat => {
+    const target = +stat.dataset.target;
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    let current = 0;
+
+    const updateCount = () => {
+      current += increment;
+      if (current < target) {
+        stat.textContent = Math.floor(current);
+        requestAnimationFrame(updateCount);
+      } else {
+        stat.textContent = target;
+      }
+    };
+
+    updateCount();
+  });
+}
+
+window.addEventListener('scroll', () => {
+  const statsSection = document.getElementById('stats');
+  const sectionTop = statsSection.getBoundingClientRect().top;
+  
+  if (sectionTop < window.innerHeight - 100 && !counted) {
+    counted = true;
+    countUp();
+  }
+});
+
+// ===== افکت پارالاکس روی موس =====
+document.addEventListener('mousemove', (e) => {
+  const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+  const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+  
+  document.querySelector('.hero h1').style.transform = 
+    `translate(${moveX}px, ${moveY}px)`;
+});
+</script>
+
+</body>
+</html>
